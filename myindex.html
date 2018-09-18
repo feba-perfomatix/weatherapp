@@ -11,15 +11,17 @@ $("#id_btn").click(function(){
 	url:"/weather",
 	type: "POST",
 dataType: "JSON",
-	data:$("#id_form").serialize()	})
-	.done(function(data) {
+	data:$("#id_form").serialize(),
+	success: function(data) {
 				alert("temperature is "+data.weather);
-				})
-	.fail(function(){
-			alert("ERROR");
-			})
+				document.getElementById("temp_id").innerHTML = data.weather;
+	},
+	error:function(data){
+			alert("ERROR"+JSON.stringify(data));
+			}
 		});
 	});
+});
 
 </script>
 </head>

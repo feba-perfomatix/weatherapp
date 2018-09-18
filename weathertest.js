@@ -16,7 +16,7 @@ app.set('view engine', 'ejs')
 
 
 app.get('/',function(req,res){
- res.sendFile ("/home/feba/nodeprojects/myindex.html");
+ res.sendFile ("/home/feba/weatherapp/myindex.html");
 });
 
 
@@ -29,16 +29,17 @@ app.post('/weather',function(req,res)
 	if(error){
 	      obj.error = 'Error, please try again';
 		console.log( 'Error, please try again');
-		response.send(obj.error);
+		res.send(obj.error);
 	      //response.render('myindex', obj);
 	    }
 	else
 	{
 	let weather = JSON.parse(body);
-	console.log("WEATHER:::"+weather);
+	console.log("WEATHER:::"+body);
 	obj.weather = `It is ${weather.current.temp_c} degrees in ${weather.location.name}!`;
 	console.log(">>>>"+obj.weather);
-	response.json(obj);
+//res.writeHead(200, { 'Content-Type': 'application/json' });
+	res.send(obj);
 	}
 	
 	})
