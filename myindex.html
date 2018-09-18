@@ -1,0 +1,34 @@
+<html>
+<head>
+<title>myindex</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	alert ("doc ready");
+$("#id_btn").click(function(){
+	alert ("on click");
+	$.ajax({
+	url:"/weather",
+	type: "POST",
+dataType: "JSON",
+	data:$("#id_form").serialize()	})
+	.done(function(data) {
+				alert("temperature is "+data.weather);
+				})
+	.fail(function(){
+			alert("ERROR");
+			})
+		});
+	});
+
+</script>
+</head>
+<body>
+<form method="post" id="id_form" action="/weather">
+place or city:<input type="textbox" name="place">
+<button type="submit" id="id_btn">Find Temperature</button>
+</form>
+temp:<input type="textbox" name="temp" id="temp_id">
+</body>
+
+</html>
