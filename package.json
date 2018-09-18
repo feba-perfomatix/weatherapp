@@ -1,0 +1,22 @@
+{
+  "name": "weatherapp",
+  "version": "1.0.0",
+  "description": "My test weather app",
+  "main": "weathertest.js",
+  "scripts": {
+    "test": "\"echo \\\"Error: no test specified\\\" && exit 1\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/feba-perfomatix/weatherapp.git"
+  },
+  "keywords": [
+    "weather"
+  ],
+  "author": "feba",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/feba-perfomatix/weatherapp/issues"
+  },
+  "homepage": "https://github.com/feba-perfomatix/weatherapp#readme"
+}
