@@ -1,28 +1,36 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
+<meta charset="utf-8"> 
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>myindex</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
-	alert ("doc ready");
+	$("p").hide();
+	//alert ("doc ready");
 $("#id_btn").click(function(){
-	alert ("on click");
+	//alert ("on click"); //You can use custom sweetalert from https://sweetalert.js.org/
 	$.ajax({
 	url:"/weather",
 	type: "GET",
 dataType: "JSON",
 	data:$("#id_form").serialize(),
 	success: function(data) {
-				alert("weather is::"+data.weather);
-				alert("error is::"+data.error);
+				//alert("weather is::"+data.weather);
+				//alert("error is::"+data.error);
+				$("p").show();
 				if(data.error==null)
 				document.getElementById("id_p1").innerHTML = "Hi there..."+data.weather;
 				else
 				document.getElementById("id_p1").innerHTML = "Hi there..."+data.error;
-				alert(">>>>>>>>>>>>>>>>>>>>");
+				//alert(">>>>>>>>>>>>>>>>>>>>");
 	},
 	error:function(data){
-			alert("ERROR------"+JSON.stringify(data));
+			//alert("ERROR------"+JSON.stringify(data));
+			window.alert("Server Error!!!");
 			
 			}
 		});
@@ -30,13 +38,34 @@ dataType: "JSON",
 });
 
 </script>
+<style>
+h3 {text-align:center;}
+.centre {text-align:center;}
+.spancl{
+	padding-top: 35px;
+}
+</style>
 </head>
 <body>
+	<div class="container-fluid">
+<div class="row">
+<h3 class="jumbotron">Temperature</h3>
+
+</div>
+<div class="centre row">		
 <form id="id_form" >
-place or city:<input type="textbox" name="place">
-<button type="button" id="id_btn">Find Temperature</button>
+City:<input type="textbox" id="id_place" name="place">
+<button class="btn btn-primary" type="button" id="id_btn">
+		<span class="glyphicon glyphicon-search"></span>  Find Temperature</button>
 </form>
-<p1 id="id_p1"></p1>
+</div>
+<div class="row">
+	<div class="col-md-4"></div>
+	<div class="centre col-md-5 spancl">
+	<p class="alert alert-info" id="id_p1"></p>
+</div>
+</div>
+</div>
 </body>
 
 </html>

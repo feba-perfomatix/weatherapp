@@ -23,7 +23,7 @@ app.get('/weather',function(req,res)
 	  error: null};
 
 		var city = req.query.place;
-		console.log("city>>>"+city);
+		//console.log("city>>>"+city);
   	let url = `http://api.apixu.com/v1/current.json?key=3c5618e8558e4838adf54241181809&q=${city}`
 		request(url, function (error, response, body) {
 								/*if(body==""){
@@ -35,7 +35,7 @@ app.get('/weather',function(req,res)
 								else*/
 							//	{
 			var result = JSON.parse(body);
-			console.log("WEATHER:::"+result);
+			//console.log("WEATHER:::"+result);
 			if(result.hasOwnProperty("error")){
 					obj.error=result.error.message;
 			}
