@@ -16,13 +16,13 @@ app.get('/',function(req,res){
 });
 
 //post is handled.api call performed and data sent back using res.send()
-app.post('/',function(req,res)
+app.get('/weather',function(req,res)
 {
 	var obj = {
 	  weather: null,
 	  error: null};
 
-		var city = req.body.place;
+		var city = req.query.place;
 		console.log("city>>>"+city);
   	let url = `http://api.apixu.com/v1/current.json?key=3c5618e8558e4838adf54241181809&q=${city}`
 		request(url, function (error, response, body) {
