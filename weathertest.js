@@ -4,10 +4,6 @@ var bodyParser     =         require("body-parser");
 var app            =         express();
 const port = 3000;
 
-	let obj = {
-	  weather: null,
-	  error: null
-	};
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -19,38 +15,43 @@ app.get('/',function(req,res){
  res.sendFile ("/home/feba/weatherapp/myindex.html");
 });
 
-
+//post is handled.api call performed and data sent back using res.send()
 app.post('/',function(req,res)
 {
-	let city = req.body.place;
-	console.log("city>>>"+city);
+	var obj = {
+	  weather: null,
+	  error: null};
+
+		var city = req.body.place;
+		console.log("city>>>"+city);
   	let url = `http://api.apixu.com/v1/current.json?key=3c5618e8558e4838adf54241181809&q=${city}`
-	request(url, function (error, response, body) {
-	/*if(body==""){
-	      obj.error = JSON.parse(body).error.message;
-		console.log( 'Error, please try again:::'+obj.error);
-		res.send(obj);
-	      //response.render('myindex', obj);
-	    }
-	else*/
-//	{
-	let result = JSON.parse(body);
-	console.log("WEATHER:::"+result);
-	if(result.hasOwnProperty("error")){
-obj.error=result.error.message;
-	}
-	else{
-	obj.weather = `It is ${result.current.temp_c} degrees in ${result.location.name}!`;
-	console.log(">>>>"+obj.weather);
-}
-//res.writeHead(200, { 'Content-Type': 'application/json' });
-	res.send(obj);
-//	}
+		request(url, function (error, response, body) {
+								/*if(body==""){
+											obj.error = JSON.parse(body).error.message;
+									console.log( 'Error, please try again:::'+obj.error);
+									res.send(obj);
+											//response.render('myindex', obj);
+										}
+								else*/
+							//	{
+			var result = JSON.parse(body);
+			console.log("WEATHER:::"+result);
+			if(result.hasOwnProperty("error")){
+					obj.error=result.error.message;
+			}
+			else{
+					obj.weather = `It is ${result.current.temp_c} degrees in ${result.location.name}!`;
+					console.log(">>>>"+obj.weather);
+			}
+			res.send(obj);
+		});
+});
+									//res.writeHead(200, { 'Content-Type': 'application/json' });
+		
+									//	}
 	
-	})
-	//obj.error="My Error Msg";
-	//res.send(obj);
-})
+								//obj.error="My Error Msg";
+								//res.send(obj);
 ////////////////////////////////
 
 
@@ -66,4 +67,4 @@ obj.error=result.error.message;
 
 app.listen(port,function(){
   console.log("Server Started on PORT 3000");
-})
+});
