@@ -13,12 +13,17 @@ $("#id_btn").click(function(){
 dataType: "JSON",
 	data:$("#id_form").serialize(),
 	success: function(data) {
-				alert(data.weather);
+				alert("weather is::"+data.weather);
+				alert("error is::"+data.error);
+				if(data.error==null)
 				document.getElementById("id_p1").innerHTML = "Hi there..."+data.weather;
+				else
+				document.getElementById("id_p1").innerHTML = "Hi there..."+data.error;
 				alert(">>>>>>>>>>>>>>>>>>>>");
 	},
 	error:function(data){
-			alert("ERROR"+JSON.stringify(data));
+			alert("ERROR------"+JSON.stringify(data));
+			
 			}
 		});
 	});

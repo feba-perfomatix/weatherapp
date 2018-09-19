@@ -26,23 +26,30 @@ app.post('/',function(req,res)
 	console.log("city>>>"+city);
   	let url = `http://api.apixu.com/v1/current.json?key=3c5618e8558e4838adf54241181809&q=${city}`
 	request(url, function (error, response, body) {
-	if(error){
-	      obj.error = 'Error, please try again';
-		console.log( 'Error, please try again');
-		res.send(obj.error);
+	/*if(body==""){
+	      obj.error = JSON.parse(body).error.message;
+		console.log( 'Error, please try again:::'+obj.error);
+		res.send(obj);
 	      //response.render('myindex', obj);
 	    }
-	else
-	{
-	let weather = JSON.parse(body);
-	console.log("WEATHER:::"+body);
-	obj.weather = `It is ${weather.current.temp_c} degrees in ${weather.location.name}!`;
+	else*/
+//	{
+	let result = JSON.parse(body);
+	console.log("WEATHER:::"+result);
+	if(result.hasOwnProperty("error")){
+obj.error=result.error.message;
+	}
+	else{
+	obj.weather = `It is ${result.current.temp_c} degrees in ${result.location.name}!`;
 	console.log(">>>>"+obj.weather);
+}
 //res.writeHead(200, { 'Content-Type': 'application/json' });
 	res.send(obj);
-	}
+//	}
 	
 	})
+	//obj.error="My Error Msg";
+	//res.send(obj);
 })
 ////////////////////////////////
 
