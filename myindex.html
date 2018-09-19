@@ -8,13 +8,14 @@ $(document).ready(function(){
 $("#id_btn").click(function(){
 	alert ("on click");
 	$.ajax({
-	url:"/weather",
+	url:"/",
 	type: "POST",
 dataType: "JSON",
 	data:$("#id_form").serialize(),
 	success: function(data) {
-				alert("temperature is "+data.weather);
-				document.getElementById("temp_id").innerHTML = data.weather;
+				alert(data.weather);
+				document.getElementById("id_p1").innerHTML = "Hi there..."+data.weather;
+				alert(">>>>>>>>>>>>>>>>>>>>");
 	},
 	error:function(data){
 			alert("ERROR"+JSON.stringify(data));
@@ -26,11 +27,11 @@ dataType: "JSON",
 </script>
 </head>
 <body>
-<form method="post" id="id_form" action="/weather">
+<form id="id_form" >
 place or city:<input type="textbox" name="place">
-<button type="submit" id="id_btn">Find Temperature</button>
+<button type="button" id="id_btn">Find Temperature</button>
 </form>
-temp:<input type="textbox" name="temp" id="temp_id">
+<p1 id="id_p1"></p1>
 </body>
 
 </html>

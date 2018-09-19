@@ -20,7 +20,7 @@ app.get('/',function(req,res){
 });
 
 
-app.post('/weather',function(req,res)
+app.post('/',function(req,res)
 {
 	let city = req.body.place;
 	console.log("city>>>"+city);
